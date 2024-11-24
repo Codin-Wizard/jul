@@ -4,19 +4,34 @@ const boxBody = document.getElementById("box-body");
 const presentName = document.getElementById("present-name");
 const giftBox = document.getElementById("gift-box");
 const fallingSnow = document.getElementById("falling-snow");
-
+const ikkeHer = document.getElementById('ikkeHer')
+const her = document.getElementById('her');
 function openGiftBox() {
   lid.style.transform = "translateY(-100px) rotate(10deg)";
   lid.style.transition = "transform 0.5s ease-out";
   presentName.style.display = "block"; // Show the name inside
   presentName.style.opacity = "1";
+  giftBox.style.pointerEvents = "none";
 }
-if (giftBox) {
-  giftBox.addEventListener("click", () => {
-    openGiftBox();
-  });
-  
+
+function resetGiftBox() {
+  lid.style.transform = "translateY(0) rotate(0deg)";
+  lid.style.transition = "transform 0.5s ease-out";
+  presentName.style.opacity = "0";
+  setTimeout(() => {
+    presentName.style.display = "none";
+  }, 500);
+  giftBox.style.pointerEvents = "auto";
+  ikkeHer.style.display = "none";
+  her.style.display = "none";
 }
+
+if (ikkeHer) {
+  ikkeHer.addEventListener('click', () => {
+    resetGiftBox()
+  })
+}
+
 
 const menu = document.getElementById("menu");
 const sideMenu = document.getElementById("side-menu");
@@ -36,7 +51,7 @@ menu.addEventListener("click", toggleMenu);
 
 document.addEventListener("click", (event) => {
   if (!sideMenu.contains(event.target) && !menu.contains(event.target)) {
-    sideMenu.style.display = "none"; 
+    sideMenu.style.display = "none";
     menu.style.color = 'black';
   }
 });

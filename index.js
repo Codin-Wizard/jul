@@ -1,22 +1,23 @@
 window.addEventListener("load", async () => {
 
-let elevTabell = [];
+  let elevTabell = [];
+  let vinner = null;
 
-class Elever2024 {
-  constructor(fornavn, etternavn, klasse) {
-    this.fornavn = fornavn;
-    this.etternavn = etternavn;
-    this.klasse = klasse;
-    this.trinn = this.elevTrinn(klasse);
-  }
-
-  elevTrinn(klasse) {
-    if (klasse && klasse.length > 0) {
-      return klasse.charAt(0);
+  class Elever2024 {
+    constructor(fornavn, etternavn, klasse) {
+      this.fornavn = fornavn;
+      this.etternavn = etternavn;
+      this.klasse = klasse;
+      this.trinn = this.elevTrinn(klasse);
     }
-    return null; //Siste linje er tom veldig irriterende
+
+    elevTrinn(klasse) {
+      if (klasse && klasse.length > 0) {
+        return klasse.charAt(0);
+      }
+      return null; //Siste linje er tom veldig irriterende
+    }
   }
-}
   try {
     const response = await fetch("Elever2024.csv");
     const tekst = await response.text();
@@ -34,12 +35,11 @@ class Elever2024 {
     function tilFeldigVinner() {
       const date = new Date();
       const dag = date.getDate();
-      const month = date.getMonth() + 1;  
-    
-      let vinner;
+      const month = date.getMonth() + 1;
+
       let tall = Math.floor(Math.random() * elevTabell.length);
       vinner = elevTabell[tall];
-      
+
       //if (dag === 18) {vinner = elevTabell.find(elev => elev.fornavn === "Vittorio"); } 
       return {
         fornavn: vinner.fornavn,
@@ -49,24 +49,32 @@ class Elever2024 {
     }
     const gave = document.getElementById("gift-box");
     if (gave) {
-      gave.addEventListener("click", async () => {
-        const visVinner = document.getElementById("present-name"); 
-        const vinner = tilFeldigVinner(); 
+      gave.addEventListener("click", () => {
+
+        const visVinner = document.getElementById("present-name");
+        const vinner = tilFeldigVinner();
         visVinner.textContent = `Den som vant var ${vinner.fornavn} ${vinner.etternavn}`;
-  
-        
-        $.ajax({
-          type: "POST",
-          url: "lagreVinner.php", 
-          data: {
-            fornavn: vinner.fornavn,  
-            etternavn: vinner.etternavn,
-            klasse: vinner.klasse 
-          }
-        });
-        
+        openGiftBox()
+        const ikkeHer = document.getElementById('ikkeHer');
+        const her = document.getElementById('her');
+        ikkeHer.style.display = "inline-block"; // Gjør "ikke her" synlig
+        her.style.display = "inline-block";
       });
     }
+    const her = document.getElementById('her')
+
+    her.addEventListener('click', () => {
+      resetGiftBox()
+      $.ajax({
+        type: "POST",
+        url: "lagreVinner.php",
+        data: {
+          fornavn: vinner.fornavn,
+          etternavn: vinner.etternavn,
+          klasse: vinner.klasse
+        }
+      });
+    })
   } catch (error) {
     console.error("Error", error);
   }

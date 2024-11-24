@@ -4,7 +4,9 @@ require_once("_Topp.php");
 ?>
  <div class="carousel">
       <div class="carousel__item carousel__item--visible">
-        <img src="bilder/sleigh.png" />
+        <div id="navn1"></div>
+        <div id="navn2"></div>
+        <div id="navn3"></div>
       </div>
       <div class="carousel__item">
         <img src="bilder/snowflake.png" />
