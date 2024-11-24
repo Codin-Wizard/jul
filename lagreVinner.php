@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nyTekst = $fornavn . ";" . $etternavn. ";" . $klasse . ";" . $dagensDato;
 
     
-    $filnavn = "navn.csv";
+    $filnavn = "vinnere.csv";
     $overskrift = "Fornavn;Etternavn;Klasse;Dato";
 
     $nyFil = !file_exists($filnavn);//Sjekker om filen finnes
