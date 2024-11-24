@@ -2,8 +2,9 @@
 require_once("_config.php");
 require_once("_Topp.php");
 ?>
-<style>
-.carousel-container {
+    <style>
+
+        .carousel-container {
             width: 80%;
             margin: 50px auto;
             overflow: hidden;
@@ -16,10 +17,11 @@ require_once("_Topp.php");
         .carousel {
             display: flex;
             transition: transform 0.5s ease;
+            gap: 20px; /* Legger til avstand mellom boksene */
         }
 
         .box {
-            min-width: calc(100% / 4);
+            min-width: calc(100% / 4 - 20px); /* Endrer bredden på boksene for å passe flere samtidig */
             padding: 20px;
             box-sizing: border-box;
             text-align: center;
@@ -27,7 +29,6 @@ require_once("_Topp.php");
             color: #fff;
             border: 2px solid #f1faee;
             border-radius: 10px;
-            margin: 10px;
             background-image: url('https://i.imgur.com/ZNjBQMG.png'); /* Snøfnugg bakgrunn */
             background-size: cover;
             background-blend-mode: screen;
@@ -39,7 +40,7 @@ require_once("_Topp.php");
             color: #f1faee;
         }
 
-        .present-name {
+        .names {
             font-size: 1em;
             margin-bottom: 5px;
         }
@@ -65,49 +66,40 @@ require_once("_Topp.php");
             right: 10px;
         }
     </style>
-<div class="carousel-container">
-    <div class="carousel" id="carousel">
-       
+  <div class="carousel-container">
+        <div class="carousel" id="carousel">
+           <!-- Boksene blir dynamisk generert i JavaScript -->
+        </div>
+        <div class="arrow left" id="prev">&#10094;</div>
+        <div class="arrow right" id="next">&#10095;</div>
     </div>
-    <div class="arrow left" id="prev">&#10094;</div>
-    <div class="arrow right" id="next">&#10095;</div>
-</div>
 
     <script>
         const carousel = document.getElementById('carousel');
 
         for (let i = 1; i < 25; i++) {
-       /* const giftBox = document.createElement('div')
-        giftBox.classList.add('gift-box-vinner')
-        const lid = document.createElement('div')
-        lid.classList.add('lid-vinner')
-        const bow = document.createElement('div')
-        bow.classList.add('bow-vinner')
-*/
-        const box = document.createElement('div')
-        box.classList.add('box')
+            const box = document.createElement('div');
+            box.classList.add('box');
 
-        const overskrift = document.createElement('h3')
-        overskrift.textContent = `Boks ${i}`
+            const overskrift = document.createElement('h3');
+            overskrift.textContent = `Boks ${i}`;
 
-        const trinn1Vinner = document.createElement('div')
-        trinn1Vinner.textContent = 'navn1'
-        trinn1Vinner.classList.add('present-name')
+            const trinn1Vinner = document.createElement('div');
+            trinn1Vinner.textContent = 'navn1';
+            trinn1Vinner.classList.add('present-name');
 
-        const trinn2Vinner = document.createElement('div')
-        trinn2Vinner.textContent = 'navn2'
-        trinn2Vinner.classList.add('present-name')
+            const trinn2Vinner = document.createElement('div');
+            trinn2Vinner.textContent = 'navn2';
+            trinn2Vinner.classList.add('present-name');
 
-        const trinn3Vinner = document.createElement('div')
-        trinn3Vinner.textContent = 'navn2'
-        trinn3Vinner.classList.add('present-name')
+            const trinn3Vinner = document.createElement('div');
+            trinn3Vinner.textContent = 'navn3';  // Rettet til "navn3"
+            trinn3Vinner.classList.add('present-name');
 
-        lid.appendChild(bow)
-        box.append(overskrift, trinn1Vinner, trinn2Vinner, trinn3Vinner)
-       // giftBox.append(lid, box)
-        carousel.append(box)
-    }
-
+            // Legg elementene til boksen
+            box.append(overskrift, trinn1Vinner, trinn2Vinner, trinn3Vinner);
+            carousel.append(box);
+        }
 
         const prev = document.getElementById('prev');
         const next = document.getElementById('next');
@@ -118,7 +110,7 @@ require_once("_Topp.php");
         const boxesToShow = 4; // Hvor mange bokser som vises om gangen
 
         function updateCarousel() {
-            const boxWidth = carousel.children[0].offsetWidth;
+            const boxWidth = carousel.children[0].offsetWidth + 20; // Legger til gap på 20px
             carousel.style.transform = `translateX(-${currentIndex * boxWidth}px)`;
         }
 
@@ -135,6 +127,11 @@ require_once("_Topp.php");
                 updateCarousel();
             }
         });
+
+        // Automatisk rullende karusell (valgfritt)
+        setInterval(() => {
+            next.click();
+        }, 5000); // 5 sekunder
     </script>
 <?php
 require_once("_Bunn.php");
