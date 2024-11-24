@@ -1,0 +1,314 @@
+/* Base Styles */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+.material-icons-round{
+  font-family: 'Material Icons Round', 'Material Icons';
+  font-size: 24px;
+}
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Gift Box Styles */
+.gift-box {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(to bottom, #ff0000, #b30000);
+  border: 5px solid gold;
+  margin: 50px auto;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+  /* Glow effect */
+  z-index: 10;
+}
+
+/* Lid with Bow */
+.lid {
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  background: gold;
+  top: 0;
+  left: 0;
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.bow {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: red;
+  border-radius: 50%;
+  top: -15px;
+  left: 80px;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+}
+
+.lid::before,
+.lid::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 5px;
+  background-color: gold;
+  top: 20px;
+  left: 0;
+}
+
+/* Box Body */
+.box-body {
+  position: absolute;
+  width: 100%;
+  height: 150px;
+  bottom: 0;
+  background: linear-gradient(to bottom, #ff0000, #800000);
+}
+
+/* Present Name Styles */
+.present-name {
+  display: none;
+  text-align: center;
+  color: white;
+  font-size: 24px;
+  margin-top: 60px;
+  text-shadow: 2px 2px 4px gold;
+}
+
+/* Snowflakes (Festive Effect) */
+.falling-snow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('./bilder/snowflake_background.jpg');
+  background-size: cover;
+  animation: fall 20s infinite;
+  z-index: -999;
+}
+
+
+.snowflake-bilde {
+  position: absolute;
+  animation: snow-fall linear infinite;
+  pointer-events: none;
+  z-index: -54;
+}
+.snowflake {
+  position: absolute;
+  background-color: #fff;
+  border-radius: 50%;
+  animation: snow-fall linear infinite;
+  pointer-events: none;
+  z-index: -54;
+}
+
+
+.show-snow .snowflake, .show-snow .fa-snowflake-o  {
+  animation: fall 3s linear infinite;
+}
+/*Menu*/
+#menu {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 32px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  z-index: 100001;
+
+}
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 30%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9); 
+  display: none;
+  padding: 20px;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+  z-index: 10000;
+}
+.menu-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; 
+  padding-top: 40px; 
+  position: relative;
+}
+.menu-item {
+  padding: 15px 20px;
+  font-size: 18px;
+  color: #fff;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2); 
+  text-align: left; 
+}
+.menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.1); 
+}
+/* Login-form, skjult som standard */
+.login-form-container {
+  display: none; /* Skjult til å begynne med */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Svart, semi-transparent bakgrunn */
+  z-index: 10001; /* Høyere enn menyen */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Stil for selve login-formen */
+.login-form {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+  width: 300px;
+  text-align: center;
+}
+
+.login-form h2 {
+  margin-bottom: 20px;
+}
+
+.login-form label {
+  display: block;
+  margin: 10px 0 5px 0;
+  text-align: left;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.login-form button {
+  padding: 10px 15px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.login-form button:hover {
+  background-color: #0056b3;
+}
+@keyframes snow-fall {
+  0% {
+    transform: translateY(-10px) translateX(0);
+    opacity: 1;
+  }
+
+  70% {
+    transform: translateY(70vh) translateX(var(--translateX)); /* Use the random translateX value */
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(100vh) translateX(var(--translateX)); /* Still using the random translateX */
+    opacity: 0;
+  }
+}
+/*Bakgrunn*/
+@keyframes fall {
+  0% {
+    background-position: 0 -100vh;
+  }
+
+  100% {
+    background-position: 0 100vh;
+  }
+}
+
+/*Julenisse og slede */
+.sleigh {
+	font-size: 3rem;
+}
+.flip *{ 
+ transform: scaleX(-1);
+}
+.santa0, .santa1, .santa2, .santa3, .santa4, .santa5, .santa6,
+.santa0-flip, .santa1-flip, .santa2-flip, .santa3-flip, .santa4-flip, .santa5-flip, .santa6-flip {
+	position: absolute;
+	z-index: 2;
+	animation-name: up, across;
+	animation-duration: 10s, 6.5s;
+	animation-timing-function: ease-in-out, linear;
+	animation-iteration-count: 1, 1;
+}
+
+.santa0, .santa1, .santa2, .santa3, .santa4, .santa5, .santa6 {
+	right: -80px;
+	top: 100px;
+}
+
+.santa0, .santa0-flip { animation-delay: 3s, 5s; }
+.santa1, .santa1-flip { animation-delay: 3.2s, 5.1s; }
+.santa2, .santa2-flip { animation-delay: 3.4s, 5.2s; }
+.santa3, .santa3-flip { animation-delay: 3.6s, 5.3s; }
+.santa4, .santa4-flip { animation-delay: 3.8s, 5.4s; }
+.santa5, .santa5-flip { animation-delay: 4s, 5.6s; }
+.santa6, .santa6-flip { animation-delay: 4.2s, 5.8s; }
+
+.santa0-flip, .santa1-flip, .santa2-flip, .santa3-flip, .santa4-flip, .santa5-flip, .santa6-flip {
+	left: -80px;
+	top: 300px;
+	animation-name: up, across-right; 
+}
+
+
+
+@keyframes up {
+	0% {
+		transform: translateY(0%);
+	}
+
+	50% {
+		transform: translateY(100px);
+	}
+
+	100% {
+		transform: translateY(0);
+	}
+}
+
+@keyframes across {
+	from {
+		right: 0%;
+	}
+
+	to {
+		right: 100%;
+	}
+}
+
+@keyframes across-right {
+	from {
+		left: 0%;
+	}
+
+	to {
+		left: 100%;
+	}
+}
