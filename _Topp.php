@@ -17,6 +17,12 @@
 
     <div class="side-menu" id="side-menu">
         <div class="menu-content">
+            <a href="./index.php">
+                <div class="menu-item">Hjem</div>
+            </a>
+            <a href="./visVinnere.php">
+                <div class="menu-item">Vinnere</div>
+            </a>
             <?php
             if ($_SESSION["Rolle"] == "A")
                 echo "<a href='./_logout.php'>
@@ -27,8 +33,26 @@
                 <div class='menu-item login-button' id='login-button'>Login</div>
             </a>";
             ?>
-            <a href="./visVinnere.php"><div class="menu-item">Vinnere</div></a>
         </div>
     </div>
 
-    <div class="falling-snow"></div>
+
+    <section class="sleigh">
+        <div class="santa0">
+            <div>🦌</div>
+        </div>
+        <div class="santa1">
+            <div>🦌</div>
+        </div>
+        <div class="santa2">
+            <div>🦌</div>
+        </div>
+        <div class="santa3">
+            <div>🦌</div>
+        </div>
+        <div class="santa4">
+            <div>🦌</div>
+        </div>
+        <div class="santa5"><img src="./bilder/sleigh.png" alt="" width="40px"></div>
+    </section>
+    <div class="falling-snow" id="falling-snow"></div>

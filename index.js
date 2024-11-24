@@ -1,3 +1,5 @@
+window.addEventListener("load", async () => {
+
 let elevTabell = [];
 
 class Elever2024 {
@@ -15,25 +17,6 @@ class Elever2024 {
     return null; //Siste linje er tom veldig irriterende
   }
 }
-
-function tilFeldigVinner() {
-  const date = new Date();
-  const dag = date.getDate();
-  const month = date.getMonth() + 1;  
-
-  let vinner;
-  let tall = Math.floor(Math.random() * elevTabell.length);
-  vinner = elevTabell[tall];
-  
-  //if (dag === 18) {vinner = elevTabell.find(elev => elev.fornavn === "Vittorio"); } 
-  return {
-    fornavn: vinner.fornavn,
-    etternavn: vinner.etternavn,
-    klasse: vinner.klasse
-  };
-}
-
-window.addEventListener("load", async () => {
   try {
     const response = await fetch("Elever2024.csv");
     const tekst = await response.text();
@@ -47,27 +30,43 @@ window.addEventListener("load", async () => {
       } else {
         console.warn(`Skipper linje ${i} pågrunn av manglende felt`);
       }
-
-
     }
-    const gave = document.querySelector(".gift-box");
-    gave.addEventListener("click", async () => {
-      const visVinner = document.querySelector(".present-name"); 
-      const vinner = tilFeldigVinner(); 
-      visVinner.textContent = `Den som vant var ${vinner.fornavn} ${vinner.etternavn}`;
-
+    function tilFeldigVinner() {
+      const date = new Date();
+      const dag = date.getDate();
+      const month = date.getMonth() + 1;  
+    
+      let vinner;
+      let tall = Math.floor(Math.random() * elevTabell.length);
+      vinner = elevTabell[tall];
       
-      $.ajax({
-        type: "POST",
-        url: "lagreVinner.php", 
-        data: {
-          fornavn: vinner.fornavn,  
-          etternavn: vinner.etternavn,
-          klasse: vinner.klasse 
-        }
+      //if (dag === 18) {vinner = elevTabell.find(elev => elev.fornavn === "Vittorio"); } 
+      return {
+        fornavn: vinner.fornavn,
+        etternavn: vinner.etternavn,
+        klasse: vinner.klasse
+      };
+    }
+    const gave = document.getElementById("gift-box");
+    if (gave) {
+      gave.addEventListener("click", async () => {
+        const visVinner = document.getElementById("present-name"); 
+        const vinner = tilFeldigVinner(); 
+        visVinner.textContent = `Den som vant var ${vinner.fornavn} ${vinner.etternavn}`;
+  
+        
+        $.ajax({
+          type: "POST",
+          url: "lagreVinner.php", 
+          data: {
+            fornavn: vinner.fornavn,  
+            etternavn: vinner.etternavn,
+            klasse: vinner.klasse 
+          }
+        });
+        
       });
-      
-    });
+    }
   } catch (error) {
     console.error("Error", error);
   }

@@ -2,34 +2,16 @@
 require_once("_config.php");
 require_once("_Topp.php");
 ?>
-<section class="sleigh">
-    <div class="santa0">
-        <div>🦌</div>
-    </div>
-    <div class="santa1">
-        <div>🦌</div>
-    </div>
-    <div class="santa2">
-        <div>🦌</div>
-    </div>
-    <div class="santa3">
-        <div>🦌</div>
-    </div>
-    <div class="santa4">
-        <div>🦌</div>
-    </div>
-    <div class="santa5"><img src="./bilder/sleigh.png" alt="" width="40px"></div>
-</section>
 
-<div class="gift-box">
-    <div class="lid">
-        <div class="bow"></div>
+<div class="gift-box" id="gift-box">
+    <div class="lid" id="lid">
+        <div class="bow" id="bow"></div>
     </div>
-    <div class="box-body">
-        <div class="present-name">[Name Goes Here]</div>
+    <div class="box-body" id="box-body">
+        <div class="present-name" id="present-name">[Name Goes Here]</div>
     </div>
 </div>
-
+<script src="./index.js"></script>
 <?php
 require_once("_Bunn.php");
 ?>

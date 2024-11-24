@@ -18,8 +18,7 @@ require_once("_Topp.php");
         <button id="carousel__button--next" aria-label="Next slide">></button>
       </div>
     </div>
-
-<script src="./visVinnerAni.js"></script>
+    <script src="./visVinnerAni.js"></script>
 <?php
 require_once("_Bunn.php");
 ?>

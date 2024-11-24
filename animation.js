@@ -1,8 +1,9 @@
-const lid = document.querySelector(".lid");
-const boxBody = document.querySelector(".box-body");
-const presentName = document.querySelector(".present-name");
-const giftBox = document.querySelector(".gift-box");
-const fallingSnow = document.querySelector(".falling-snow");
+
+const lid = document.getElementById("lid");
+const boxBody = document.getElementById("box-body");
+const presentName = document.getElementById("present-name");
+const giftBox = document.getElementById("gift-box");
+const fallingSnow = document.getElementById("falling-snow");
 
 function openGiftBox() {
   lid.style.transform = "translateY(-100px) rotate(10deg)";
@@ -10,10 +11,12 @@ function openGiftBox() {
   presentName.style.display = "block"; // Show the name inside
   presentName.style.opacity = "1";
 }
-
-giftBox.addEventListener("click", () => {
-  openGiftBox();
-});
+if (giftBox) {
+  giftBox.addEventListener("click", () => {
+    openGiftBox();
+  });
+  
+}
 
 const menu = document.getElementById("menu");
 const sideMenu = document.getElementById("side-menu");
@@ -39,7 +42,7 @@ document.addEventListener("click", (event) => {
 });
 
 function createSnowflakes() {
-  for (let i = 0; i < 300; i++) {
+  for (let i = 0; i < 150; i++) {
     const snowflake = document.createElement("div");
     snowflake.classList.add("snowflake-bilde");
 
@@ -62,7 +65,7 @@ function createSnowflakes() {
     snowflake.style.setProperty("--translateX", `${horizontalShift}px`);
     fallingSnow.append(snowflake);
   }
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 50; i++) {
     const snowflakeRound = document.createElement("div");
     snowflakeRound.classList.add("snowflake");
 
